@@ -48,17 +48,10 @@ class GreetingServiceImplTest {
         assertEquals(expectedText, actualText);
     }
 
-    static Stream<Arguments> greetingRequests() {
-        return Stream.of(
-            Arguments.of(LocalTime.of(22, 16), "¡Buenas noches"),
-            Arguments.of(LocalTime.of(8, 25), "¡Buenos días"),
-            Arguments.of(LocalTime.of(12, 27), "¡Buenas tardes"));
-    }
-
     @ParameterizedTest
     @NullSource
-    @ValueSource(strings = {"", "Pedro", "oche", "oche  ","  "})
-    //should return empty Optional because of invalid request
+    @ValueSource(strings = {"", "Pedro", "oche", "oche  ", "  "})
+        //should return empty Optional because of invalid request
     void shouldReturnEmptyOptional(String name) {
 
         assertThat(greetingService.validateRequest(name)).isEmpty();
